@@ -31,6 +31,8 @@ class Liquidctl < Formula
   end
 
   def install
+    ENV["DIST_NAME"] = OS.mac? ? "homebrew" : "linuxbrew"
+    ENV["DIST_PACKAGE"] = "#{tap == nil ? path : full_name} #{version}"
     venv = virtualenv_create(libexec, "python3")
     venv.pip_install resources.reject { |r| r.name == "hidapi" }
     resource("hidapi").stage do
