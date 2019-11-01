@@ -4,6 +4,7 @@ class Liquidctl < Formula
   desc "Cross-platform CLI and Python drivers for AIO liquid coolers and other devices"
   homepage "https://github.com/jonasmalacofilho/liquidctl"
   url "https://files.pythonhosted.org/packages/f2/08/7e56efece1ed5083e82826a1734f6e3c452401602ca211448c4b2c9e4cc9/liquidctl-1.2.0.tar.gz"
+  head "https://github.com/jonasmalacofilho/liquidctl.git"
   sha256 "ad8c03c0695620fedaec11e7a8286bb5d4da18ba0c71e55888bfa06f8f7d7529"
 
   depends_on "libusb"
