@@ -40,10 +40,6 @@ class Liquidctl < Formula
 	end
 
 	test do
-		assert_predicate bin/"liquidctl", :exist?
-		assert_predicate bin/"liquidctl", :executable?
-
-		version_output = shell_output("#{bin}/liquidctl --version 2>&1", 1)
-		assert_match "liquidctl #{version}", version_output
+               shell_output("#{bin}/liquidctl list", 0)
 	end
 end
