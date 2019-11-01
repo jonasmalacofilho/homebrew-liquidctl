@@ -30,7 +30,13 @@ class Liquidctl < Formula
 	end
 
 	def install
-		virtualenv_install_with_resources
+               venv = virtualenv_create(libexec, "python3")
+               venv.pip_install resources.reject { |r| r.name == "hidapi" }
+               resource("hidapi").stage do
+                       inreplace "setup.py", "/usr/include/", "#{Formula["libusb"].include}/"
+                       venv.pip_install "."
+               end
+               venv.pip_install_and_link buildpath
 	end
 
 	test do
