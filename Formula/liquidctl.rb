@@ -38,6 +38,15 @@ class Liquidctl < Formula
       venv.pip_install "."
     end
     venv.pip_install_and_link buildpath
+
+    man_page = buildpath/"liquidctl.8"
+    if man_page.exist?
+      if OS.mac?
+        inreplace man_page, "/run/liquidctl/", "/Library/Application Support/liquidctl/"
+      end
+      man.mkpath
+      man8.install man_page
+    end
   end
 
   test do
