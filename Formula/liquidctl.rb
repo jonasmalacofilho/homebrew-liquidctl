@@ -58,7 +58,7 @@ class Liquidctl < Formula
   end
 
   test do
-    if build.devel || build.head
+    if version >= "1.3.0rc1"
       shell_output "#{bin}/liquidctl list --verbose --debug"
     else
       shell_output "#{bin}/liquidctl list"
