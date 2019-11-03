@@ -18,17 +18,17 @@ jobs:
     - name: Try stable
       run: |
         brew install liquidctl
-        liquidctl list --verbose --debug
+        brew test liquidctl
         brew remove liquidctl
     - name: Try devel
       run: |
         brew install liquidctl --devel
-        liquidctl list --verbose --debug
+        brew test liquidctl
         brew remove liquidctl
     - name: Try HEAD
       run: |
         brew install liquidctl --HEAD
-        liquidctl list --verbose --debug
+        brew test liquidctl
         brew remove liquidctl
     - name: brew audit
       if: matrix.os == 'macOS-latest'
