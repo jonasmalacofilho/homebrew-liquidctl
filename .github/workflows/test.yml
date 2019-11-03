@@ -1,4 +1,4 @@
-name: macOS
+name: macOS & linux
 
 on: [push, pull_request]
 
@@ -9,10 +9,17 @@ jobs:
     strategy:
       max-parallel: 1
       matrix:
-        os: [macOS-latest]
+        os: [macOS-latest, ubuntu-latest]
 
     steps:
     - uses: actions/checkout@v1
+    - name: Install linuxbrew (Linux)
+      if: matrix.os == 'ubuntu-latest'
+      run: |
+        sudo apt-get update
+        sudo apt-get install -y curl git build-essential
+        yes | sh -c "$(curl -fsSL https://raw.githubusercontent.com/Linuxbrew/install/master/install.sh)"
+        echo "::add-path::/home/linuxbrew/.linuxbrew/bin"
     - name: Tap ourselves
       run: brew tap jonasmalacofilho/liquidctl .git
     - name: Try stable
@@ -30,6 +37,6 @@ jobs:
         brew install liquidctl --HEAD
         brew test liquidctl
         brew remove liquidctl
-    - name: brew audit
+    - name: brew audit (macOS)
       if: matrix.os == 'macOS-latest'
       run: brew audit --new-formula liquidctl
