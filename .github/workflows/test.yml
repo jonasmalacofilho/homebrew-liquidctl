@@ -23,12 +23,12 @@ jobs:
     - name: Try devel
       run: |
         brew install liquidctl --devel
-        brew test liquidctl
+        brew test liquidctl --devel
         brew remove liquidctl
     - name: Try HEAD
       run: |
         brew install liquidctl --HEAD
-        brew test liquidctl
+        brew test liquidctl --HEAD
         brew remove liquidctl
     - name: brew audit
       if: matrix.os == 'macOS-latest'
