@@ -8,6 +8,11 @@ class Liquidctl < Formula
 
   head "https://github.com/jonasmalacofilho/liquidctl.git"
 
+  devel do
+    url "https://files.pythonhosted.org/packages/source/l/liquidctl/liquidctl-1.3.0rc1.tar.gz"
+    sha256 "15583d6ebecad722e1562164cef7097a358d6a57aa33a1a5e25741690548dbfa"
+  end
+
   depends_on "libusb"
   depends_on "python"
 
@@ -53,6 +58,10 @@ class Liquidctl < Formula
   end
 
   test do
-    shell_output("#{bin}/liquidctl list", 0)
+    if build.devel or build.head
+      shell_output("#{bin}/liquidctl list --verbose --debug", 0)
+    else
+      shell_output("#{bin}/liquidctl list", 0)
+    end
   end
 end
