@@ -1,0 +1,35 @@
+name: macOS
+
+on: [push, pull_request]
+
+jobs:
+  build:
+
+    runs-on: ${{ matrix.os }}
+    strategy:
+      max-parallel: 1
+      matrix:
+        os: [macOS-latest]
+
+    steps:
+    - uses: actions/checkout@v1
+    - name: Tap ourselves
+      run: brew tap jonasmalacofilho/liquidctl .git
+    - name: Try stable
+      run: |
+        brew install liquidctl
+        liquidctl list --verbose --debug
+        brew remove liquidctl
+    - name: Try devel
+      run: |
+        brew install liquidctl --devel
+        liquidctl list --verbose --debug
+        brew remove liquidctl
+    - name: Try HEAD
+      run: |
+        brew install liquidctl --HEAD
+        liquidctl list --verbose --debug
+        brew remove liquidctl
+    - name: brew audit
+      if: matrix.os == 'macOS-latest'
+      run: brew audit --new-formula liquidctl
