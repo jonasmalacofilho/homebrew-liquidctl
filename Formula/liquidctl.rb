@@ -1,7 +1,7 @@
 class Liquidctl < Formula
   include Language::Python::Virtualenv
 
-  desc "Cross-platform CLI and Python drivers for AIO liquid coolers and other devices"
+  desc "Cross-platform tool and Python drivers for liquid coolers and other devices"
   homepage "https://github.com/jonasmalacofilho/liquidctl"
   url "https://files.pythonhosted.org/packages/source/l/liquidctl/liquidctl-1.2.0.tar.gz"
   sha256 "ad8c03c0695620fedaec11e7a8286bb5d4da18ba0c71e55888bfa06f8f7d7529"
@@ -38,7 +38,7 @@ class Liquidctl < Formula
 
   def install
     ENV["DIST_NAME"] = OS.mac? ? "homebrew" : "linuxbrew"
-    ENV["DIST_PACKAGE"] = "#{tap == nil ? path : full_name} #{version}"
+    ENV["DIST_PACKAGE"] = "#{tap.nil? ? path : full_name} #{version}"
     venv = virtualenv_create(libexec, "python3")
     venv.pip_install resources.reject { |r| r.name == "hidapi" }
     resource("hidapi").stage do
@@ -58,10 +58,10 @@ class Liquidctl < Formula
   end
 
   test do
-    if build.devel or build.head
-      shell_output("#{bin}/liquidctl list --verbose --debug", 0)
+    if build.devel || build.head
+      shell_output "#{bin}/liquidctl list --verbose --debug"
     else
-      shell_output("#{bin}/liquidctl list", 0)
+      shell_output "#{bin}/liquidctl list"
     end
   end
 end
