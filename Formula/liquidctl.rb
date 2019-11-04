@@ -41,7 +41,7 @@ class Liquidctl < Formula
     ENV["DIST_NAME"] = OS.mac? ? "homebrew" : "linuxbrew"
     ENV["DIST_PACKAGE"] = "#{tap.nil? ? path : full_name} #{version}"
 
-    # patch cython-hidapi to build with headers in a custom location 
+    # patch cython-hidapi to build with headers in a custom location
     venv = virtualenv_create(libexec, "python3")
     venv.pip_install resources.reject { |r| r.name == "hidapi" }
     resource("hidapi").stage do
