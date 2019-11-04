@@ -38,24 +38,15 @@ class Liquidctl < Formula
 
   def install
     # customize liquidctl --version
-    ENV["DIST_NAME"] = OS.mac? ? "homebrew" : "linuxbrew"
+    ENV["DIST_NAME"] = "homebrew"
     ENV["DIST_PACKAGE"] = "#{tap.nil? ? path : full_name} #{version}"
 
-    # patch cython-hidapi to build with headers in a custom location
-    venv = virtualenv_create(libexec, "python3")
-    venv.pip_install resources.reject { |r| r.name == "hidapi" }
-    resource("hidapi").stage do
-      inreplace "setup.py", "/usr/include/", "#{Formula["libusb"].include}/"
-      venv.pip_install "."
-    end
-    venv.pip_install_and_link buildpath
+    virtualenv_install_with_resources
 
     if build.head? || build.devel?
       man_page = buildpath/"liquidctl.8"
-      if OS.mac?
-        # update the location of liquidctl application data on macOS
-        inreplace man_page, "/run/liquidctl/", "/Library/Application Support/liquidctl/"
-      end
+      # update the location of liquidctl application data on macOS
+      inreplace man_page, "/run/liquidctl/", "/Library/Application Support/liquidctl/"
       man.mkpath
       man8.install man_page
     end
