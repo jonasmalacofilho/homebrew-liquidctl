@@ -50,8 +50,8 @@ class Liquidctl < Formula
     end
     venv.pip_install_and_link buildpath
 
-    man_page = buildpath/"liquidctl.8"
-    if man_page.exist?
+    if build.head? || build.devel?
+      man_page = buildpath/"liquidctl.8"
       if OS.mac?
         # update the location of liquidctl application data on macOS
         inreplace man_page, "/run/liquidctl/", "/Library/Application Support/liquidctl/"
