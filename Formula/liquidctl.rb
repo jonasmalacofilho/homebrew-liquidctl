@@ -8,11 +8,6 @@ class Liquidctl < Formula
 
   head "https://github.com/jonasmalacofilho/liquidctl.git"
 
-  devel do
-    url "https://files.pythonhosted.org/packages/source/l/liquidctl/liquidctl-1.3.0rc1.tar.gz"
-    sha256 "15583d6ebecad722e1562164cef7097a358d6a57aa33a1a5e25741690548dbfa"
-  end
-
   depends_on "libusb"
   depends_on "python"
 
@@ -42,21 +37,9 @@ class Liquidctl < Formula
     ENV["DIST_PACKAGE"] = "#{tap.nil? ? path : full_name} #{version}"
 
     virtualenv_install_with_resources
-
-    if build.head? || build.devel?
-      man_page = buildpath/"liquidctl.8"
-      # update the location of liquidctl application data on macOS
-      inreplace man_page, "/run/liquidctl/", "/Library/Application Support/liquidctl/"
-      man.mkpath
-      man8.install man_page
-    end
   end
 
   test do
-    if version >= "1.3.0rc1"
-      shell_output "#{bin}/liquidctl list --verbose --debug"
-    else
-      shell_output "#{bin}/liquidctl list"
-    end
+    shell_output "#{bin}/liquidctl list"
   end
 end
