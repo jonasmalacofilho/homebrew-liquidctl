@@ -53,8 +53,13 @@ class Liquidctl < Formula
     if build.head? || build.devel?
       man_page = buildpath/"liquidctl.8"
       if OS.mac?
-        # update the location of liquidctl application data on macOS
-        inreplace man_page, "/run/liquidctl/", "/Library/Application Support/liquidctl/"
+        if build.head?
+          # set the is_macos register to 1
+          inreplace man_page, ".nr is_macos 0", ".nr is_macos 1"
+        else
+          # 1.3.0rc1 requires manually fixing the path
+          inreplace man_page, "/run/liquidctl/", "/Library/Application Support/liquidctl/"
+        end
       end
       man.mkpath
       man8.install man_page
