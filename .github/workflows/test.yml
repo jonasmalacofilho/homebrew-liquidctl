@@ -31,11 +31,11 @@ jobs:
         brew install liquidctl
         brew test liquidctl
         brew remove liquidctl
-    - name: Try devel
-      run: |
-        brew install liquidctl --devel
-        brew test liquidctl
-        brew remove liquidctl
+    # - name: Try devel
+    #   run: |
+    #     brew install liquidctl --devel
+    #     brew test liquidctl
+    #     brew remove liquidctl
     - name: Try HEAD
       run: |
         brew install liquidctl --HEAD
