@@ -3,23 +3,18 @@ class Liquidctl < Formula
 
   desc "Cross-platform tool and drivers for liquid coolers and other devices"
   homepage "https://github.com/jonasmalacofilho/liquidctl"
-  url "https://files.pythonhosted.org/packages/source/l/liquidctl/liquidctl-1.2.0.tar.gz"
-  sha256 "ad8c03c0695620fedaec11e7a8286bb5d4da18ba0c71e55888bfa06f8f7d7529"
+  url "https://files.pythonhosted.org/packages/source/l/liquidctl/liquidctl-1.3.0.tar.gz"
+  sha256 "ce0483b0a7f9cf2618cb30bdf3ff4195e20d9df6c615f69afe127f54956e42ce"
 
   head "https://github.com/jonasmalacofilho/liquidctl.git"
 
   devel do
-    url "https://files.pythonhosted.org/packages/source/l/liquidctl/liquidctl-1.3.0rc1.tar.gz"
-    sha256 "15583d6ebecad722e1562164cef7097a358d6a57aa33a1a5e25741690548dbfa"
+    url "https://files.pythonhosted.org/packages/source/l/liquidctl/liquidctl-1.3.0.tar.gz"
+    sha256 "ce0483b0a7f9cf2618cb30bdf3ff4195e20d9df6c615f69afe127f54956e42ce"
   end
 
   depends_on "libusb"
   depends_on "python"
-
-  resource "appdirs" do
-    url "https://files.pythonhosted.org/packages/source/a/appdirs/appdirs-1.4.3.tar.gz"
-    sha256 "9e5896d1372858f8dd3344faf4e5014d21849c756c8d5701f78f8a103b372d92"
-  end
 
   resource "docopt" do
     url "https://files.pythonhosted.org/packages/source/d/docopt/docopt-0.6.2.tar.gz"
@@ -50,27 +45,16 @@ class Liquidctl < Formula
     end
     venv.pip_install_and_link buildpath
 
-    if build.head? || build.devel?
-      man_page = buildpath/"liquidctl.8"
-      if OS.mac?
-        if build.head?
-          # set the is_macos register to 1
-          inreplace man_page, ".nr is_macos 0", ".nr is_macos 1"
-        else
-          # 1.3.0rc1 requires manually fixing the path
-          inreplace man_page, "/run/liquidctl/", "/Library/Application Support/liquidctl/"
-        end
-      end
-      man.mkpath
-      man8.install man_page
+    man_page = buildpath/"liquidctl.8"
+    if OS.mac?
+      # setting the is_macos register to 1 adjusts the man page for macOS
+      inreplace man_page, ".nr is_macos 0", ".nr is_macos 1"
     end
+    man.mkpath
+    man8.install man_page
   end
 
   test do
-    if version >= "1.3.0rc1"
-      shell_output "#{bin}/liquidctl list --verbose --debug"
-    else
-      shell_output "#{bin}/liquidctl list"
-    end
+    shell_output "#{bin}/liquidctl list --verbose --debug"
   end
 end
