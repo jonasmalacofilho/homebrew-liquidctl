@@ -8,11 +8,6 @@ class Liquidctl < Formula
 
   head "https://github.com/jonasmalacofilho/liquidctl.git"
 
-  devel do
-    url "https://files.pythonhosted.org/packages/source/l/liquidctl/liquidctl-1.3.0.tar.gz"
-    sha256 "ce0483b0a7f9cf2618cb30bdf3ff4195e20d9df6c615f69afe127f54956e42ce"
-  end
-
   depends_on "libusb"
   depends_on "python"
 
