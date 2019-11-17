@@ -1,4 +1,4 @@
-name: macOS & linux
+name: macOS only
 
 on: 
   push:
