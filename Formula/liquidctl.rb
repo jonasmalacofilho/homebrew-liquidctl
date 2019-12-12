@@ -3,8 +3,8 @@ class Liquidctl < Formula
 
   desc "Cross-platform tool and drivers for liquid coolers and other devices"
   homepage "https://github.com/jonasmalacofilho/liquidctl"
-  url "https://files.pythonhosted.org/packages/source/l/liquidctl/liquidctl-1.3.0.tar.gz"
-  sha256 "ce0483b0a7f9cf2618cb30bdf3ff4195e20d9df6c615f69afe127f54956e42ce"
+  url "https://files.pythonhosted.org/packages/source/l/liquidctl/liquidctl-1.3.2.tar.gz"
+  sha256 "bb742947c15f4a3987685641c0dd73184c4a40add5ad818ced68e5ace3631b6b"
 
   head "https://github.com/jonasmalacofilho/liquidctl.git"
 
@@ -29,7 +29,7 @@ class Liquidctl < Formula
   def install
     # customize liquidctl --version
     ENV["DIST_NAME"] = "homebrew"
-    ENV["DIST_PACKAGE"] = "#{tap.nil? ? path : full_name} #{version}"
+    ENV["DIST_PACKAGE"] = "liquidctl #{version}"
 
     virtualenv_install_with_resources
 
