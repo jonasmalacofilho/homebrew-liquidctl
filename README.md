@@ -2,6 +2,8 @@
 
 Homebrew/linuxbrew tap for [liquidctl](https://github.com/jonasmalacofilho/liquidctl).
 
+[![Status of homebrew/linuxbrew tests](https://github.com/jonasmalacofilho/homebrew-liquidctl/workflows/macOS%20%26%20linux/badge.svg)](https://github.com/jonasmalacofilho/homebrew-liquidctl/commits/master)
+
 ## Installing
 
 ```
@@ -42,5 +44,3 @@ After uninstalling, it is possible to revert back to the formula from homebrew-c
 ```
 $ brew install liquidctl
 ```
-
-[![Status of homebrew/linuxbrew tests](https://github.com/jonasmalacofilho/homebrew-liquidctl/workflows/macOS%20%26%20linux/badge.svg)](https://github.com/jonasmalacofilho/homebrew-liquidctl/commits/master)
