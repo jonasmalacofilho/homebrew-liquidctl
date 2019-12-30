@@ -43,4 +43,4 @@ jobs:
         brew remove liquidctl
     - name: brew audit (macOS)
       if: matrix.os == 'macOS-latest'
-      run: brew audit --new-formula liquidctl
+      run: brew audit --new-formula jonasmalacofilho/liquidctl/liquidctl
