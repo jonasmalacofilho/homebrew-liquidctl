@@ -28,17 +28,17 @@ jobs:
       run: brew tap jonasmalacofilho/liquidctl .git
     - name: Try stable
       run: |
-        brew install liquidctl
+        brew install jonasmalacofilho/liquidctl/liquidctl
         brew test liquidctl
         brew remove liquidctl
     # - name: Try devel
     #   run: |
-    #     brew install liquidctl --devel
+    #     brew install jonasmalacofilho/liquidctl/liquidctl --devel
     #     brew test liquidctl
     #     brew remove liquidctl
     - name: Try HEAD
       run: |
-        brew install liquidctl --HEAD
+        brew install jonasmalacofilho/liquidctl/liquidctl --HEAD
         brew test liquidctl
         brew remove liquidctl
     - name: brew audit (macOS)
