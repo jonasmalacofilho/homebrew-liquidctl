@@ -1,6 +1,12 @@
 # homebrew-liquidctl
 
-_This tap has been deprecated and it is recommended to switch to the formulae in homebrew-core/linuxbrew-core.  See: [Uninstalling](#uninstalling)._
+_This tap has been deprecated; it is recommended to switch to the formulae in homebrew-core/linuxbrew-core:_
+
+```
+$ brew uninstall jonasmalacofilho/liquidctl/liquidctl
+$ brew untap jonasmalacofilho/liquidctl
+$ brew install liquidctl
+```
 
 ## Installing
 
@@ -34,6 +40,8 @@ $ brew update && brew upgrade jonasmalacofilho/liquidctl/liquidctl --force-HEAD
 ```
 
 ## Uninstalling
+
+_Deprecated._
 
 To uninstall use the complete formula name, and then untap:
 
