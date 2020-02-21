@@ -1,10 +1,12 @@
 # homebrew-liquidctl
 
-Homebrew/linuxbrew tap for [liquidctl](https://github.com/jonasmalacofilho/liquidctl).
+_This tap has been deprecated and it is recommended to switch to the formulae in homebrew-core/linuxbrew-core._
 
-[![Status of homebrew/linuxbrew tests](https://github.com/jonasmalacofilho/homebrew-liquidctl/workflows/macOS%20%26%20linux/badge.svg)](https://github.com/jonasmalacofilho/homebrew-liquidctl/commits/master)
+_More information in [Uninstalling](#uninstalling)._
 
 ## Installing
+
+_Deprecated._
 
 ```
 $ brew tap jonasmalacofilho/liquidctl
@@ -18,6 +20,8 @@ $ brew uninstall liquidctl
 ```
 
 ## Upgrading
+
+_Deprecated._
 
 To upgrade, make sure to use the complete name:
 
@@ -33,13 +37,14 @@ $ brew update && brew upgrade jonasmalacofilho/liquidctl/liquidctl --force-HEAD
 
 ## Uninstalling
 
-To uninstall use the complete name:
+To uninstall use the complete formula name, and then untap:
 
 ```
 $ brew uninstall jonasmalacofilho/liquidctl/liquidctl
+$ brew untap jonasmalacofilho/liquidctl
 ```
 
-After uninstalling, it is possible to revert back to the formula from homebrew-core:
+After this it is possible to install the formula from homebrew-core/linuxbrew-core:
 
 ```
 $ brew install liquidctl

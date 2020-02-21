@@ -31,6 +31,9 @@ class Liquidctl < Formula
     ENV["DIST_NAME"] = OS.mac? ? "homebrew" : "linuxbrew"
     ENV["DIST_PACKAGE"] = "#{tap.nil? ? path : full_name} #{version}"
 
+    opoo "The custom jonasmalacofilho/liquidctl tap has been deprecated; " \
+         "it is recommended to switch to the liquidctl formula in #{ENV["DIST_NAME"]}brew-core."
+
     # patch cython-hidapi to build with headers in a custom location
     venv = virtualenv_create(libexec, "python3")
     venv.pip_install resources.reject { |r| r.name == "hidapi" }
