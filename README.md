@@ -1,8 +1,6 @@
 # homebrew-liquidctl
 
-_This tap has been deprecated and it is recommended to switch to the formulae in homebrew-core/linuxbrew-core._
-
-_More information in [Uninstalling](#uninstalling)._
+_This tap has been deprecated and it is recommended to switch to the formulae in homebrew-core/linuxbrew-core.  See: [Uninstalling](#uninstalling)._
 
 ## Installing
 
